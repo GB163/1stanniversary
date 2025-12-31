@@ -293,6 +293,7 @@
   
   let currentSongIndex = 0;
   let audioPlayer = null;
+  let hasStartedPlaying = false;
 
   function playNextSong() {
     if (currentSongIndex >= songs.length) {
@@ -307,8 +308,8 @@
     
     audioPlayer = document.createElement('audio');
     audioPlayer.src = songs[currentSongIndex];
-    audioPlayer.autoplay = true;
     audioPlayer.volume = 1.0;
+    audioPlayer.preload = 'auto';
     
     // When song ends, play next one
     audioPlayer.addEventListener('ended', () => {
@@ -319,10 +320,44 @@
     // Add to container
     const songContainer = document.getElementById('songContainer');
     songContainer.appendChild(audioPlayer);
+    
+    // Try to play the audio
+    const playPromise = audioPlayer.play();
+    
+    // Handle autoplay restrictions
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          // Autoplay started successfully
+          hasStartedPlaying = true;
+        })
+        .catch((error) => {
+          // Autoplay was prevented - will start on user interaction
+          console.log('Autoplay prevented, waiting for user interaction');
+        });
+    }
+  }
+
+  // Function to start playing on user interaction
+  function startPlaybackOnInteraction() {
+    if (!hasStartedPlaying && audioPlayer) {
+      audioPlayer.play()
+        .then(() => {
+          hasStartedPlaying = true;
+        })
+        .catch((error) => {
+          console.log('Playback failed:', error);
+        });
+    }
   }
 
   // Start playing songs when page loads
   playNextSong();
+
+  // Start playback on first user interaction (click, touch, or keypress)
+  document.addEventListener('click', startPlaybackOnInteraction, { once: true });
+  document.addEventListener('touchstart', startPlaybackOnInteraction, { once: true });
+  document.addEventListener('keydown', startPlaybackOnInteraction, { once: true });
 
   // Snow Effect
   function createSnow() {
@@ -406,7 +441,10 @@
   }
 
   // Click handler for message button
-  messageButton.addEventListener('click', showNextMessage);
+  messageButton.addEventListener('click', () => {
+    startPlaybackOnInteraction();
+    showNextMessage();
+  });
 
   // Close modal handlers
   closeBtn.addEventListener('click', () => {
