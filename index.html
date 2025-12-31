@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Anniversary❤️ (. ❛ ᴗ ❛.)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Press Start 2P", "Courier New", monospace;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+
+  .hero {
+    background-image: url("images/img2.jpeg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .overlay {
+    background: rgba(0, 0, 0, 0.55);
+    position: absolute;
+    inset: 0;
+  }
+
+  .content {
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    max-width: 90%;
+    font-family: "Press Start 2P", "Courier New", monospace;
+  }
+
+  .content h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .content p {
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    line-height: 1.8;
+  }
+
+  .countdown {
+    font-size: 1em;
+    font-weight: normal;
+    margin-top: 20px;
+    color: #ffd6e0;
+    line-height: 1.8;
+  }
+
+  .message-button {
+    margin-top: 30px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    transition: transform 0.3s, filter 0.3s;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .message-button img {
+    display: block;
+    width: 200px;
+    height: auto;
+    border-radius: 15px;
+    transition: transform 0.3s;
+  }
+
+  .message-button:hover {
+    transform: scale(1.1);
+  }
+
+  .message-button:hover img {
+    transform: scale(1.05);
+  }
+
+  .message-button:active {
+    transform: scale(0.95);
+  }
+
+  /* Message Popup Modal */
+  /* Snow Effect */
+  .snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+    overflow: hidden;
+  }
+
+  .snowflake {
+    position: absolute;
+    top: -20px;
+    font-size: 20px;
+    animation: fall linear infinite;
+    user-select: none;
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(0) translateX(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) translateX(calc(var(--drift, 50px))) rotate(360deg);
+      opacity: 0.8;
+    }
+  }
+
+  .message-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.3s;
+  }
+
+  .message-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .message-content {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s;
+    position: relative;
+    color: #333;
+    font-family: "Press Start 2P", "Courier New", monospace;
+  }
+
+  .message-content h2 {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #8b4a6b;
+    line-height: 1.8;
+  }
+
+  .message-content p {
+    font-size: 0.7em;
+    line-height: 2;
+    color: #5a3a4a;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2em;
+    font-weight: bold;
+    color: #8b4a6b;
+    cursor: pointer;
+    transition: transform 0.2s;
+    font-family: "Press Start 2P", "Courier New", monospace;
+  }
+
+  .close-btn:hover {
+    transform: scale(1.2);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .content h1 {
+      font-size: 1.2em;
+    }
+    .content p {
+      font-size: 0.7em;
+    }
+    .countdown {
+      font-size: 0.7em;
+    }
+    .message-content {
+      padding: 30px 20px;
+    }
+    .message-content h2 {
+      font-size: 0.9em;
+    }
+    .message-content p {
+      font-size: 0.6em;
+    }
+    .message-button img {
+      width: 150px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Song Container -->
+<div id="songContainer"></div>
+
+<!-- Snow Container -->
+<div class="snow-container" id="snowContainer"></div>
+
+<div class="hero">
+  <div class="overlay"></div>
+
+  <div class="content">
+    <h1>Happy 1 year Anniversary babez (. ❛ ᴗ ❛.)</h1>
+    <p>interact with the cake plis</p>
+
+    <div class="countdown" id="countdown">
+      Counting down to New Year...
+    </div>
+
+    <button class="message-button" id="messageButton">
+      <img src="images/cakeimg.jpeg" alt="Click for a special message">
+    </button>
+  </div>
+</div>
+
+<!-- Message Popup Modal -->
+<div class="message-modal" id="messageModal">
+  <div class="message-content">
+    <span class="close-btn" id="closeBtn">&times;</span>
+    <h2 id="messageTitle">OuO</h2>
+    <p id="messageText"></p>
+  </div>
+</div>
+
+<script>
+  function updateCountdown() {
+    const now = new Date();
+    const year = now.getFullYear() + 1;
+    const newYear = new Date(`January 1, ${year} 00:00:00`);
+    const diff = newYear - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("countdown").innerHTML =
+      `Btw New Year in ${days}d ${hours}h ${minutes}m ${seconds}s `;
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // Song Container - Play songs in order
+  const songs = [
+    'music/music1.mp3',
+    'music/music2.mp3',
+    'music/music3.mp3'
+  ];
+  
+  let currentSongIndex = 0;
+  let audioPlayer = null;
+
+  function playNextSong() {
+    if (currentSongIndex >= songs.length) {
+      // All songs played, restart from beginning
+      currentSongIndex = 0;
+    }
+
+    // Create new audio element
+    if (audioPlayer) {
+      audioPlayer.remove();
+    }
+    
+    audioPlayer = document.createElement('audio');
+    audioPlayer.src = songs[currentSongIndex];
+    audioPlayer.autoplay = true;
+    audioPlayer.volume = 1.0;
+    
+    // When song ends, play next one
+    audioPlayer.addEventListener('ended', () => {
+      currentSongIndex++;
+      playNextSong();
+    });
+
+    // Add to container
+    const songContainer = document.getElementById('songContainer');
+    songContainer.appendChild(audioPlayer);
+  }
+
+  // Start playing songs when page loads
+  playNextSong();
+
+  // Snow Effect
+  function createSnow() {
+    const snowContainer = document.getElementById('snowContainer');
+    const snowEmojis = ['❄️', '', '', ''];
+    const numSnowflakes = 50;
+
+    for (let i = 0; i < numSnowflakes; i++) {
+      const snowflake = document.createElement('div');
+      snowflake.className = 'snowflake';
+      snowflake.textContent = snowEmojis[Math.floor(Math.random() * snowEmojis.length)];
+      
+      // Random starting position
+      snowflake.style.left = Math.random() * 100 + '%';
+      
+      // Random animation duration (5-15 seconds)
+      const duration = 5 + Math.random() * 10;
+      snowflake.style.animationDuration = duration + 's';
+      
+      // Random delay to stagger the snowflakes
+      snowflake.style.animationDelay = Math.random() * 5 + 's';
+      
+      // Random horizontal drift
+      const drift = (Math.random() - 0.5) * 100;
+      snowflake.style.setProperty('--drift', drift + 'px');
+      
+      snowContainer.appendChild(snowflake);
+    }
+  }
+
+  // Start snow effect when page loads
+  createSnow();
+
+  // Array of messages
+  const messages = [
+    "Really grateful to share that one brain cell with you ❤️",
+    "Just wanna throw it out there that you're just my favorite 💖 everytime we interact I can't help but put my 100% attention to you (not even kidding)",
+    "Did u remember we came to know of each other's existence EXACCCTLY 1 year ago today? (like around 8 pm) FAAAH",
+    "Annddd shared discords exactly 362 days ago lull.. also we havent interacted for like 5 months there XD",
+    "Remember our movie nights? We watched our first movie together about 323 days ago!! its actually my fav activity to do together with yuu hehe",
+    "The one thing I love the most about us is that we can be our true selves around each other UwU (and I love to be a listener nd hear you yap ToT)",
+    "Looking forward to more movie nights, more random convos, more genshin sessions, more everything with yyyuuu (✿◠‿◠)",
+    "💗Thank you for being a part of me love 💗",
+    "P.S. I love you",
+    "Muahh",
+    "Good night honnn",
+    "Sweet...",
+    "POTATOES lolll"
+];
+
+  // Get elements
+  const messageButton = document.getElementById('messageButton');
+  const messageModal = document.getElementById('messageModal');
+  const messageText = document.getElementById('messageText');
+  const messageTitle = document.getElementById('messageTitle');
+  const closeBtn = document.getElementById('closeBtn');
+
+  // Track current message index
+  let currentMessageIndex = 0;
+
+  // Function to show messages in order
+  function showNextMessage() {
+    messageText.textContent = messages[currentMessageIndex];
+    messageModal.classList.add('active');
+    // Move to next message, wrap around when reaching the end
+    currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+  }
+
+  // Click handler for message button
+  messageButton.addEventListener('click', showNextMessage);
+
+  // Close modal handlers
+  closeBtn.addEventListener('click', () => {
+    messageModal.classList.remove('active');
+  });
+
+  messageModal.addEventListener('click', (e) => {
+    if (e.target === messageModal) {
+      messageModal.classList.remove('active');
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && messageModal.classList.contains('active')) {
+      messageModal.classList.remove('active');
+    }
+  });
+</script>
+
+</body>
+</html>
